@@ -165,9 +165,14 @@ export default class DropMenu extends Component {
     const showInLeft = rightSpace >= this._buttonFrame.x;
 
     const positionStyle = {
-      height: dropdownHeight,
-      top: showInBottom ? this._buttonFrame.y + this._buttonFrame.h : Math.max(0, this._buttonFrame.y - dropdownHeight),
-    };
+      height: dropdownHeight
+    }
+
+    if (showInBottom) {
+      positionStyle.top = this._buttonFrame.y + this._buttonFrame.h;
+    } else {
+      positionStyle.bottom = windowHeight - this._buttonFrame.y - this._buttonFrame.h;
+    }
 
     if (showInLeft) {
       positionStyle.left = this._buttonFrame.x;
@@ -242,7 +247,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     position: 'absolute',
-    height: (33 + StyleSheet.hairlineWidth) * 5,
+    //height: (33 + StyleSheet.hairlineWidth) * 5,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'lightgray',
     borderRadius: 2,
